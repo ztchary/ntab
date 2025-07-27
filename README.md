@@ -3,6 +3,7 @@ Command line tool to prettify shell tabs
 
 ### Before
 ```
+$ screen -ls
 There are screens on:
         1234567.screen-one      (07/26/2025 04:51:58 PM)        (Detached)
         2345678.screen2 (07/26/2025 04:51:58 PM)        (Detached)
@@ -12,6 +13,7 @@ There are screens on:
 
 ### After
 ```
+$ screen -ls | ntab
 There are screens on:
     1234567.screen-one          (07/26/2025 04:51:58 PM)    (Detached)
     2345678.screen2             (07/26/2025 04:51:58 PM)    (Detached)
@@ -26,4 +28,5 @@ There are screens on:
 
 ### Future plans
 - [ ] Fix issues
+- [ ] Command line arg for tab size `screen -ls | ntab 4` or `screen -ls | ntab -t 4`
 
