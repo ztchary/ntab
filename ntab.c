@@ -37,7 +37,7 @@ int main(int argc, char **argv) {
 	size_t seclen;
 	size_t tabsize = DEFAULT_TABSIZE;
 	if (argc > 1) {
-		// TODO: better erroror messages
+		// TODO: better error messages
 		if (argc != 3) error("invalid number of arguments");
 		if (strcmp("-t", argv[1]) != 0) error("invalid argument");
 		tabsize = atoi(argv[2]);
