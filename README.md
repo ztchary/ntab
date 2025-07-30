@@ -28,5 +28,5 @@ There are screens on:
 
 ### Future plans
 - [ ] Fix issues
-- [ ] Command line arg for tab size `screen -ls | ntab 4` or `screen -ls | ntab -t 4`
+- [x] Command line arg for tab size `screen -ls | ntab 4` or `screen -ls | ntab -t 4`
 

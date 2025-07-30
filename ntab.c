@@ -2,9 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-// TODO: cmdline arg for tabsize
-#define TABSIZE 4
-#define CHUNK 64000
+#define DEFAULT_TABSIZE 4
+#define CHUNK 64000 // TODO: fix this
+
+void error(const char *msg) {
+	fprintf(stderr, "\x1b[31m[ERR]\x1b[0m %s\n", msg);
+	exit(1);
+}
 
 size_t count_tabs(char *in) {
 	size_t tabs = 0;
@@ -25,12 +29,20 @@ size_t len_next_tab(char *in) {
 }
 
 
-int main() {
+int main(int argc, char **argv) {
 	size_t *seclens = malloc(CHUNK);
 	char *in  = malloc(CHUNK);
 	char *tmp = malloc(CHUNK);
 	size_t len = fread(in, 1, CHUNK, stdin);
 	size_t seclen;
+	size_t tabsize = DEFAULT_TABSIZE;
+	if (argc > 1) {
+		// TODO: better erroror messages
+		if (argc != 3) error("invalid number of arguments");
+		if (strcmp("-t", argv[1]) != 0) error("invalid argument");
+		tabsize = atoi(argv[2]);
+		if (tabsize == 0) error("invalid tabsize");
+	}
 	in[len++] = '\n';
 
 	for (; *in;) {
@@ -55,8 +67,8 @@ int main() {
 			for (size_t tab = 0; tab < tabs; tab++) {
 				seclen = len_next_tab(in);
 				memcpy(ttmp, in, seclen);
-				memset(ttmp + seclen, ' ', seclens[tab] - seclen + TABSIZE);
-				ttmp += seclens[tab] + TABSIZE;
+				memset(ttmp + seclen, ' ', seclens[tab] - seclen + tabsize);
+				ttmp += seclens[tab] + tabsize;
 				in += seclen + 1;
 			}
 			seclen = len_next_line(in) + 1;
