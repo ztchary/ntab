@@ -10,6 +10,7 @@ void error(const char *msg) {
 	exit(1);
 }
 
+// TODO: use strtok instead to remove this
 size_t count_tabs(char *in) {
 	size_t tabs = 0;
 	for (; *in && *in != '\n'; in++) tabs += *in == '\t';

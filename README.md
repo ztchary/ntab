@@ -25,8 +25,10 @@ There are screens on:
 
 - Input is currently limited to 64000 bytes
 - Tabs and the end of lines breaks the nice formatting
+- I could be using strtok because the code is a little yucky right now
 
 ### Future plans
 - [ ] Fix issues
 - [x] Command line arg for tab size `screen -ls | ntab -t 4`
+- [ ] strtok
 
